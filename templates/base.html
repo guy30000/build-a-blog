@@ -1,11 +1,12 @@
 <!doctype html>
 <html>
     <head>
+        <style> span.error { color: red; } </style>
         <title align="center">{{title}}</title>
     </head>
 <body>
-    <a href="http://127.0.0.1:5000/">Main</a>
-    <a href="http://127.0.0.1:5000/blog">Add a Blog Entry</a>
+    <a href="/">Main</a>
+    <a href="/blog">Add a Blog Entry</a>
     {% block content %}
     {% endblock %}
 

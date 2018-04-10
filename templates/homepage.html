@@ -10,12 +10,13 @@
             <li>   
                 <h1>
 
-                    <a href="http://127.0.0.1:5000/blog_entry{{blog.id}}">{{blog.blg_title}}</a>
+                    <a name='{{blog.id}}' href="/blog_entry{{blog.id}}">{{blog.blg_title}}</a>
                 </h1>
             </li>
             
             {{blog.blg_body}}
             {% endfor %}
+
 
         </ul>
 

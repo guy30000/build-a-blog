@@ -19,26 +19,6 @@ class Blog(db.Model):#needed that all to creat database and ability to enter
         self.blg_body = blg_body
 
 
-#class User(db.Model):
-
-#    id = db.Column(db.Integer, primary_key=True)
-#    email = db.Column(db.String(120), unique=True)
-#    password = db.Column(db.String(120))
-
-#    def __init__(self, email, password):
-#        self.email = email
-#        self.password = password
-
-
-#@app.route('/login')
-#def login():
-#    return render_template('login.html')
-
-
-#@app.route('/register')
-#def register():
-#    return render_template('register.html')
-
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -53,6 +33,7 @@ def index():
     #return render_template('blog.html',title="Build a Blog", tasks=tasks, completed_tasks=completed_tasks)
     blog = Blog.query.all()
    
+
     return render_template('homepage.html',title="Build a Blog", blog=blog)
 
 
@@ -62,22 +43,29 @@ def blog():
     if request.method == 'POST':
         blg_title = request.form['blg_title']
         blg_body = request.form['blg_body']
+        if not blg_body or not blg_title:
+            blg_fail =  "You need to fill out both things, guy."
+            return render_template('blog.html', blg_fail=blg_fail, blg_title=blg_title, blg_body=blg_body) 
         new_entry = Blog(blg_title, blg_body )
         db.session.add(new_entry)
         db.session.commit()
         return render_template('blog_entry.html', blog=new_entry)
 
-
-#    return redirect('/')
-
-
-
     return render_template('blog.html')
+#####THis isnt working yet V
+@app.route('/blog_entry', methods=['POST', 'GET'])
+def blog_entry(self, id):
+    blog = Blog.get_by_id(int(id))
+    tmplt = jinja.get_template('blog_entry.html')
+    response = tmplt.render(blog=blog)
+    self.response.write(response)
+    blog = Blog.query.all()
+    blog_id = request.form['{{blog.id}}']
+    blog = Blog.query.filter_by(blog_id=blog_id).all()
+  
+    return render_template('blog_entry.html' + blog.id, blog=blog)
 
 
-
-#@app.route('/delete-task', methods=['POST'])
-#def delete_task():
 
 
 
