@@ -56,8 +56,22 @@ def index():
     return render_template('homepage.html',title="Build a Blog", blog=blog)
 
 
-@app.route('/blog')
-def register():
+@app.route('/blog', methods=['POST', 'GET'])
+def blog():
+
+    if request.method == 'POST':
+        blg_title = request.form['blg_title']
+        blg_body = request.form['blg_body']
+        new_entry = Blog(blg_title, blg_body )
+        db.session.add(new_entry)
+        db.session.commit()
+        return render_template('blog_entry.html', blog=new_entry)
+
+
+#    return redirect('/')
+
+
+
     return render_template('blog.html')
 
 
@@ -65,13 +79,7 @@ def register():
 #@app.route('/delete-task', methods=['POST'])
 #def delete_task():
 
-#    task_id = int(request.form['task-id'])
-#    task = Task.query.get(task_id)
-#    task.completed = True
-#    db.session.add(task)
-#    db.session.commit()
 
-#    return redirect('/')
 
 
 if __name__ == '__main__':
