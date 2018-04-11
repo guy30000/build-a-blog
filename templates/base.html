@@ -5,10 +5,17 @@
         <title align="center">{{title}}</title>
     </head>
 <body>
-    <a href="/">Main</a>
-    <a href="/blog">Add a Blog Entry</a>
-    {% block content %}
-    {% endblock %}
 
+        <a href="/blog">Main</a>
+        <a href="/newpost">Add a Blog Entry</a>
+
+
+        <a style="float: right;"  href="/login">Login</a>
+        <a style="float: right;" href="/signup">Signup</a>
+        
+    {% block content %}
+
+    {% endblock %}
+    
 </body>
 </html>
