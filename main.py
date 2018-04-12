@@ -29,14 +29,11 @@ def index():
     
     blog = Blog.query.all()
     #bloglink_id = request.form['bloglink']
-    bloglink_id = request.form['bloglink']
+    #bloglink_id = request.form['bloglink']
     #print(bloglink_id)
     #bloglink = Blog.query.get(bloglink_id)
     #user = Blog.query.get(id).first()
-    print(blog)
 
-
-    
 
     return render_template('blog.html',title="Build a Blog", blog=blog)
 
