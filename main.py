@@ -28,12 +28,19 @@ class Blog(db.Model):#needed that all to creat database and ability to enter
 def index():
     
     blog = Blog.query.all()
-    #bloglink_id = request.form['bloglink']
-    #bloglink_id = request.form['bloglink']
-    #print(bloglink_id)
-    #bloglink = Blog.query.get(bloglink_id)
-    #user = Blog.query.get(id).first()
+    id=request.args.get('id')
+    if id:
+        id=(int(id))
 
+        sngl_post=Blog.query.filter(Blog.id==id).first()
+        #blg_title = Blog.query.get(sngl_post.blg_title)
+        blg_title = sngl_post.blg_title
+        blg_body = sngl_post.blg_body
+        print(blg_title, blg_body)
+        return render_template('blog.html', title=blg_title, blg_body=blg_body)
+
+    #return render_template('blog.html',title="Build a Blog", 
+       # blogs=blogs)
 
     return render_template('blog.html',title="Build a Blog", blog=blog)
 
