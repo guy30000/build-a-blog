@@ -63,18 +63,6 @@ def newpost():
 
     return render_template('newpost.html')
 
-#####THis isnt working yet V
-@app.route('/blog_entry', methods=['POST', 'GET'])
-def blog_entry(self, id):
-    #blog = Blog.get_by_id(int(id))
-    #tmplt = jinja.get_template('blog_entry.html')
-    #response = tmplt.render(blog=blog)
-
-    #blog = Blog.query.all()
-    #blog_id = request.form['{{blog.id}}']
-    #blog = Blog.query.filter_by(blog_id=blog_id).all()
-  
-    return render_template('blog_entry.html' + blog.id, blog=blog)
 
 ##############################################
 ####################### For Blogz
